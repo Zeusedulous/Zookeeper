@@ -12,20 +12,24 @@ import java.util.concurrent.CountDownLatch;
  * @Date : 2020/6/15 14:44
  * @Desc :
  */
-public class ZookeeperHelper implements Watcher {
+public class ZookeeperHelper {
     private static ZooKeeper zooKeeper;
-    private static int sessionTimeOut = 2000;
+    private int sessionTimeOut = 3000;
     private CountDownLatch countDownLatch = new CountDownLatch(1);
-    private static String host = "192.168.81.72:2181";
+    private static String host = "dzjtest.linkdood.cn:2181";
 
-    public void process(WatchedEvent watchedEvent) {
-        if(watchedEvent.getState() == Event.KeeperState.SyncConnected){
-
-        }
-    }
-
-    public static void connectZookeeper() throws IOException {
-        zooKeeper = new ZooKeeper(host,sessionTimeOut,null);
-
+    public ZooKeeper connectZookeeper() throws IOException, InterruptedException {
+        zooKeeper = new ZooKeeper(host, sessionTimeOut, new Watcher() {
+            public void process(WatchedEvent watchedEvent) {
+                if(watchedEvent.getState() == Event.KeeperState.SyncConnected){
+                    System.out.println("connect successful");
+                    countDownLatch.countDown();
+                }else{
+                    System.out.println("connect successful");
+                }
+            }
+        });
+        countDownLatch.await();
+        return zooKeeper;
     }
 }
