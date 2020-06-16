@@ -60,6 +60,14 @@ public class ZookeeperHelper {
         zooKeeper.delete(path,-1);
     }
 
+    public boolean exist(String path) throws KeeperException, InterruptedException {
+        Stat stat = zooKeeper.exists(path,false);
+        if(null == stat){
+            return false;
+        }
+        return true;
+    }
+
     public void closeConnection() throws InterruptedException {
         if(null != zooKeeper) {
             zooKeeper.close();

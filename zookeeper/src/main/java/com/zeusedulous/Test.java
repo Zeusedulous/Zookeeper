@@ -2,6 +2,7 @@ package com.zeusedulous;
 
 
 import org.apache.zookeeper.CreateMode;
+import org.apache.zookeeper.data.Stat;
 
 import java.util.List;
 
@@ -36,6 +37,15 @@ public class Test {
         lists = zkHelper.getChildrenData("/");
         System.out.println("所有子节点：" + lists);
 
+
+        //节点是否存在
+        boolean stat = zkHelper.exist("/test2");
+        System.out.println( "是否存在：" + stat);
+
+        System.out.println("======================");
+        stat = zkHelper.exist("/test44");
+        System.out.println( "是否存在：" + stat);
+
         //删除带有子节点的node(因为含有子节点所以删除失败)
         zkHelper.createNode("/test2/test22","test22-value",CreateMode.EPHEMERAL);
         lists = zkHelper.getChildrenData("/");
@@ -44,6 +54,4 @@ public class Test {
         System.out.println("所有子节点：" + lists);
         zkHelper.deleteNode("/test2");
     }
-
-
 }
