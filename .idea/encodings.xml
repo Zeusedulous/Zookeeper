@@ -3,6 +3,7 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/zookeeper" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zookeeper-curator" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/zookeeper-watcher" charset="UTF-8" />
   </component>
 </project>

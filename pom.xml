@@ -12,6 +12,7 @@
     <modules>
         <module>zookeeper</module>
         <module>zookeeper-watcher</module>
+        <module>zookeeper-curator</module>
     </modules>
 
 
@@ -20,6 +21,8 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <zookeeper.version>3.4.14</zookeeper.version>
         <lombok.version>1.16.18</lombok.version>
+        <zookeeper.curator.version>2.12.0</zookeeper.curator.version>
+        <slf4j.version>1.7.6</slf4j.version>
     </properties>
 
     <dependencyManagement>
@@ -28,6 +31,12 @@
                 <groupId>org.apache.zookeeper</groupId>
                 <artifactId>zookeeper</artifactId>
                 <version>${zookeeper.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <artifactId>slf4j-api</artifactId>
+                        <groupId>org.slf4j</groupId>
+                    </exclusion>
+                </exclusions>
             </dependency>
 
             <dependency>
@@ -36,6 +45,26 @@
                 <version>${lombok.version}</version>
                 <scope>provided</scope>
             </dependency>
+
+            <dependency>
+                <groupId>org.apache.curator</groupId>
+                <artifactId>curator-recipes</artifactId>
+                <version>${zookeeper.curator.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <artifactId>slf4j-api</artifactId>
+                        <groupId>org.slf4j</groupId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+
+            <dependency>
+                <artifactId>slf4j-api</artifactId>
+                <groupId>org.slf4j</groupId>
+                <version>${slf4j.version}</version>
+            </dependency>
+
+
         </dependencies>
     </dependencyManagement>
 
@@ -79,9 +108,5 @@
             </plugin>
         </plugins>
         <defaultGoal>compile</defaultGoal>
-
     </build>
-
-
-
 </project>
