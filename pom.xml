@@ -25,6 +25,18 @@
         <slf4j.version>1.7.6</slf4j.version>
     </properties>
 
+    <distributionManagement>
+        <repository>
+            <id>local-nexus</id>
+            <url>http://192.168.81.74:8081/repository/maven-releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>local-nexus</id>
+            <url>http://192.168.81.74:8081/repository/maven-snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+    <!--上传到nexus-->
     <dependencyManagement>
         <dependencies>
             <dependency>
