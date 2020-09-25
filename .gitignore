@@ -1,0 +1,4 @@
+/.idea/
+/zookeeper-watcher/target/
+/zookeeper/target/
+/zookeeper-curator/target/
